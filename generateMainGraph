@@ -1,0 +1,83 @@
+import networkx as nx
+import random
+import matplotlib.pyplot as plt
+
+N = 27
+G11 = nx.grid_2d_graph(N,N)
+
+labels=dict(((i,j),i + (N-1-j)*N) for i, j in G11.nodes())
+nx.relabel_nodes(G11,labels,False) #False=relabel the nodes in place
+inds=labels.keys()
+vals=labels.values()
+inds=[(N-j-1,N-i-1) for i,j in inds]
+
+#Create the dictionary of positions for the grid
+grid_pos=dict(zip(vals,inds)) #Format: {node ID:(i,j)}
+
+random.seed(8196)
+nodes = list(G11.nodes)
+edges = list(G11.edges)
+
+# top_left_remove = random.sample(graph_top_left,50)
+# top_right_remove = random.sample(graph_top_right,50)
+# bottom_left_remove = random.sample(graph_bottom_left,50)
+# bottom_right_remove = random.sample(graph_bottom_right,50)
+# center_remove = random.sample(graph_center,50)
+# left_remove =random.sample(graph_left,50)
+# right_remove = random.sample(graph_right,50)
+
+while nx.is_connected(G11) == True:
+    while len(G11) > 500:
+    
+
+#         G11.remove_nodes_from(top_left_remove)
+#         G11.remove_nodes_from(top_right_remove)
+#         G11.remove_nodes_from(bottom_left_remove)
+#         G11.remove_nodes_from(bottom_right_remove)
+# #         G10.remove_nodes_from(center_remove)
+# #         G10.remove_nodes_from(left_remove)
+#         G10.remove_nodes_from(right_remove)
+        G11.remove_node(random.choice(list(G11.nodes)))
+        if len(list(nx.isolates(G11)))>0:
+            G11.remove_nodes_from(list(nx.isolates(G11)))
+#         if nx.is_connected(G26) == False:
+#             G26 = G26_C
+#         else:
+#             G26_C=G26.copy()
+#     if len(G26) <= 500:
+#             break
+
+
+# G11.add_edge(5,7)
+# G11.add_edge(9,11)
+# G11.add_edge(9,63)
+# G11.add_edge(56,137)
+# G11.add_edge(108,162)
+# G11.add_edge(138,140)
+# G11.add_edge(406,460)
+# G11.add_edge(489,487)
+# G11.add_edge(594,648)
+# G11.add_edge(704,710)
+# G11.add_edge(23,18)
+# G11.add_edge(107,323)
+# G11.add_edge(426,424)
+# G11.add_edge(451,453)
+# G11.add_edge(482,479)
+# G11.add_edge(401,482)
+# G11.add_edge(458,647)
+# G11.add_edge(639,642)
+# G11.add_edge(668,671)
+# G11.add_edge(699,697)
+# G11.add_edge(725,720)
+# G11.add_edge(697,699)
+# G11.add_edge(559,561)
+# G11.add_edge(403,565)
+# G11.add_edge(565,619)
+# G11.add_edge(618,614)
+
+
+print(len(G11.nodes))
+
+plt.figure(3,figsize=(12,12))
+nx.draw(G11, pos=grid_pos,with_labels = True)
+plt.show()
