@@ -2,67 +2,18 @@
 import networkx as nx
 import random
 import matplotlib.pyplot as plt
+from graphUtils import create_layout, graph_attributes_selection, update_graph_attributes
 
 # %%
-
 G = nx.read_graphml("basegraph.graphml")
+grid_pos = create_layout(G)
 
-N=27
-GRID_ORIGIN = nx.grid_2d_graph(N,N)
-labels=dict(((i,j),i + (N-1-j)*N) for i, j in GRID_ORIGIN.nodes())
-# nx.relabel_nodes(DEDE,labels,False) #False=relabel the nodes in place
-inds=labels.keys()
-vals=labels.values()
-inds=[(N-j-1,N-i-1) for i,j in inds]
-
-#Create the dictionary of positions for the grid
-grid_pos=dict(zip(vals,inds))
-
-#turn the keys in grid_pos to strings
-grid_pos = {str(k):v for k,v in grid_pos.items()}
-
-for i in list(grid_pos):
-    if i not in G.nodes:
-        grid_pos.pop(i)
-
-
-
-# %%
 plt.figure(3,figsize=(12,12))
 nx.draw(G, pos = grid_pos, with_labels = True)
 plt.show()
+
 # %%
-A = nx.adjacency_matrix(G)
-# %%
-def graph_attributes_selection(graph_input,seeds):
-    random.seed(seeds)
-    demand= {}
-    for v in graph_input.nodes:
-        demand[v] = random.randint(15,369)
-
-    random.seed(seeds)
-    workload= {}
-    for v in graph_input.nodes:
-        workload[v] = random.randint(15,89)
-
-    random.seed(seeds)
-    n_customers= {}
-    for v in graph_input.nodes:
-        n_customers[v] = random.randint(4,19)
-
-
-    random.seed(seeds)
-    distance= {}
-    for e in graph_input.edges:
-        distance[e] = random.randint(6,40)
-
-
-    nx.set_node_attributes(graph_input, values = n_customers, name = "n_customers")
-    nx.set_node_attributes(graph_input, values = demand, name = "demand")
-    nx.set_node_attributes(graph_input, values = workload, name = "workload")
-    nx.set_edge_attributes(graph_input, values = distance, name = "distance")
-# %%
-graph_attributes_selection(G,45734)
+graph_attributes_selection(G,1998)
 
 # %%
 nx.write_graphml_lxml(G, "basegraphattributes.graphml")
