@@ -23,8 +23,13 @@ def create_layout(graph, **kwargs):
     for i in list(grid_pos):
         if i not in graph.nodes:
             grid_pos.pop(i)
+    coords = []
+    for i in inds:
+        for key, value in grid_pos.items():
+            if i == value:
+                coords.append(i)
 
-    return grid_pos
+    return grid_pos,coords
 
 def graph_function(graph_input,positions):
     grid_pos = create_layout(graph_input)

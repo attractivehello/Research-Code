@@ -594,6 +594,7 @@
 <edge source="482" target="509"/>
 <edge source="482" target="455"/>
 <edge source="334" target="307"/>
+<edge source="334" target="332"/>
 <edge source="224" target="223"/>
 <edge source="224" target="197"/>
 <edge source="159" target="186"/>
@@ -1151,6 +1152,7 @@
 <edge source="373" target="374"/>
 <edge source="373" target="346"/>
 <edge source="509" target="508"/>
+<edge source="307" target="305"/>
 <edge source="197" target="196"/>
 <edge source="163" target="162"/>
 <edge source="163" target="164"/>
