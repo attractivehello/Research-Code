@@ -13,7 +13,7 @@ base_workload = nx.get_node_attributes(GG, "workload")
 base_demand = nx.get_node_attributes(GG, "demand")
 base_distance = nx.get_edge_attributes(GG, "distance")
 
-graphUtils.update_graph_attributes(GG, base_demand, base_workload, base_customers, base_distance)
+graphUtils.update_graph_attributes(GG, base_demand, base_workload, base_customers, base_distance,674565)
 
 # %%
 nx.write_graphml_lxml(GG, "generatedgraph.graphml")
@@ -50,7 +50,7 @@ nx.set_node_attributes(GG, values = color_map, name = "color")
 
 color_map = list(color_map.values())
 
-nx.write_graphml_lxml(GG, "generatedgraph.graphml")
+nx.write_graphml_lxml(GG, "GeneratedGraph1.graphml")
 
 
 plt.figure(3,figsize=(12,12))

@@ -65,8 +65,8 @@ def graph_attributes_selection(graph_input,seeds):
     nx.set_node_attributes(graph_input, values = workload, name = "workload")
     nx.set_edge_attributes(graph_input, values = distance, name = "distance")
 
-def update_graph_attributes(graph_input,demand_input,workload_input,n_customers_input,distance_input):
-
+def update_graph_attributes(graph_input,demand_input,workload_input,n_customers_input,distance_input,seeds):
+    random.seed(seeds)
     varied_customers = {key:random.randint(int((3*n_customers_input[key])/4),int((5*n_customers_input[key])/4)) for key in n_customers_input}
     varied_workload = {key:random.randint(int((3*workload_input[key])/4),int((5*workload_input[key])/4)) for key in workload_input}
     varied_demand = {key:random.randint(int((3*demand_input[key])/4),int((5*demand_input[key])/4)) for key in demand_input}
