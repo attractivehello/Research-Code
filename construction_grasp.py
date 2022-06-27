@@ -44,7 +44,7 @@ def construction_grasp(delta, rcl_parameter,llambda,graph_input, coords, grid_po
             if i == value:
                 centers_depots.append(key)
                 
-    centers_depots = ["30","103","217","543","633","667","401","365","92","277"]
+    # centers_depots = ["30","103","217","543","633","667","401","365","92","277"]
 
     
     
